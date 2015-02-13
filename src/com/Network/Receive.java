@@ -35,8 +35,8 @@ public class Receive implements Runnable {
 			    in = new InputStreamReader(m_socket.getInputStream());  //전송 객체 초기화
 			    buffRead = new BufferedReader(in);
 			    Log.d("receive.class / 데이터 수신 객체 초기화", "성공");
-			    Log.d("temper",String.valueOf(context));
-			    Log.d("hum",String.valueOf(mainActivity));
+			    Log.d("context",String.valueOf(context));
+			    Log.d("mainActivity",String.valueOf(mainActivity));
 			    this.mainActivity = mainActivity;
 			    this.context= context;
 			   } catch(Exception e) {
@@ -70,8 +70,8 @@ public class Receive implements Runnable {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					  MainActivity.humidity.setText(result[0]+"%");
-				     MainActivity.temperature.setText(result[1]+"˚C");
+					 MainActivity.humidity.setText(result[1]+"%");
+				     MainActivity.temperature.setText(result[2]+"˚C");
 				     
 				}
 			});
