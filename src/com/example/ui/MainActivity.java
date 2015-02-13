@@ -1,6 +1,10 @@
 package com.example.ui;
 
 import java.net.Socket;
+import static com.example.ui.CommonUtilities.DISPLAY_MESSAGE_ACTION;
+import static com.example.ui.CommonUtilities.EXTRA_MESSAGE;
+import static com.example.ui.CommonUtilities.SENDER_ID;
+import static com.example.ui.CommonUtilities.SERVER_URL;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -26,6 +30,7 @@ import com.Network.Receive;
 import com.google.android.gcm.GCMRegistrar;
 
 public class MainActivity extends ActionBarActivity implements Runnable {
+
 	Socket socket;
 	ProgressDialog dialog;
 	public static TextView temperature;
@@ -322,37 +327,37 @@ public class MainActivity extends ActionBarActivity implements Runnable {
 	        registerReceiver(mHandleMessageReceiver,
 	                new IntentFilter(DISPLAY_MESSAGE_ACTION));
 	        final String regId = GCMRegistrar.getRegistrationId(this);
-	        Log.e("song", "regId["+regId+"]"); 
-	        if (regId.equals("")) {
-	            // Automatically registers application on startup.
-	            GCMRegistrar.register(this, SENDER_ID);
-	        } else {
-	            // Device is already registered on GCM, check server.
-	            if (GCMRegistrar.isRegisteredOnServer(this)) {
-	                // Skips registration.
-	      
-	            } else {
-	                // Try to register again, but not in the UI thread.
-	                // It's also necessary to cancel the thread onDestroy(),
-	                // hence the use of AsyncTask instead of a raw thread.
-	                final Context context = this;
-	                mRegisterTask = new AsyncTask<Void, Void, Void>() {
-
-	                    @Override
-	                    protected Void doInBackground(Void... params) {
-	                        ServerUtilities.register(context, regId);
-	                        return null;
-	                    }
-
-	                    @Override
-	                    protected void onPostExecute(Void result) {
-	                        mRegisterTask = null;
-	                    }
-
-	                };
-	                mRegisterTask.execute(null, null, null);
-	            }
-	        }
+	        Log.d("song", "regId["+regId+"]"); 
+//	        if (regId.equals("")) {
+//	            // Automatically registers application on startup.
+//	            GCMRegistrar.register(this, SENDER_ID);
+//	        } else {
+//	            // Device is already registered on GCM, check server.
+//	            if (GCMRegistrar.isRegisteredOnServer(this)) {
+//	                // Skips registration.
+//	      
+//	            } else {
+//	                // Try to register again, but not in the UI thread.
+//	                // It's also necessary to cancel the thread onDestroy(),
+//	                // hence the use of AsyncTask instead of a raw thread.
+//	                final Context context = this;
+//	                mRegisterTask = new AsyncTask<Void, Void, Void>() {
+//
+//	                    @Override
+//	                    protected Void doInBackground(Void... params) {
+//	                        ServerUtilities.register(context, regId);
+//	                        return null;
+//	                    }
+//
+//	                    @Override
+//	                    protected void onPostExecute(Void result) {
+//	                        mRegisterTask = null;
+//	                    }
+//
+//	                };
+//	                mRegisterTask.execute(null, null, null);
+//	            }
+//	        }
 		
 		
 		
