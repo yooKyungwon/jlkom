@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements Runnable {
 	public static TextView humidity;
 	 static Receive recv;
 	static Connect connect ;
-	static Button btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09, btn10, btn11, btn12, btn13, btn14;
+	public static Button btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09, btn10, btn11, btn12, btn13, btn14;
 	static Context context;
 	 static MainActivity mainActivity;
 	 

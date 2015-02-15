@@ -65,16 +65,26 @@ public class Receive implements Runnable {
 		     Log.d("mesaage1",result[1]);
 		     Log.d("mesaage2",result[2]);
 		     Log.d("mesaage3",result[3]);
-		    mainActivity.runOnUiThread( new Runnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					 MainActivity.humidity.setText(result[1]+"%");
-				     MainActivity.temperature.setText(result[2]+"˚C");
-				     
-				}
-			});
+		     mainActivity.runOnUiThread( new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						 MainActivity.humidity.setText(result[1]+"%");
+					     MainActivity.temperature.setText(result[2]+"˚C");
+					     
+					     if(result[3]!= "-1"){
+					    	 MainActivity.btn03.setSelected(true);
+					    	 MainActivity.btn04.setSelected(false);
+					    	 
+					     }
+					     	
+					     else{
+					    	 MainActivity.btn03.setSelected(false);
+					    	 MainActivity.btn04.setSelected(true);
+					     }
+					}
+				});
 		     //Log.d("temperature_tv", String.valueOf(MainActivity.temperature));
 	    
 		    // MainActivity.humidity.setText(result[0]);
